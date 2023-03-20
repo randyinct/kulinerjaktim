@@ -25,7 +25,7 @@ class PlaceMenuController extends Controller
             return DataTables::of($menus)
             ->addIndexColumn()
             ->editColumn('image', function ($menu) {
-                return '<img src="'. $menu->image_url .'" />';
+                return '<img style="max-width: 150px;" src="'. $menu->image_url .'" />';
             })
             ->addColumn('action', 'places.menus.dt-action')
             ->rawColumns(['action', 'image'])
@@ -133,9 +133,7 @@ class PlaceMenuController extends Controller
         $image = $menu->image;
 
         if ($request->hasFile('image')) {
-           if(Storage::exists($menu->image)) {
-            Storage::delete($menu->image);
-           }
+            !is_null($menu->image) && Storage::delete($menu->image);
            $image = $request->file('image')->store('images/menus');
         }
 
@@ -162,8 +160,10 @@ class PlaceMenuController extends Controller
     public function destroy(Place $place, Menu $menu)
     {
         if($menu){
-            if(Storage::exists($menu->image)) {
-                Storage::delete($menu->image);
+            if($menu->image){
+                if(Storage::exists($menu->image)) {
+                    Storage::delete($menu->image);
+                }
             }
 
             $menu->delete();
