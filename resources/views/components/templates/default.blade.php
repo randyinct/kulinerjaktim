@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="page-body">
-          <div class="container-xl">
+          <div class="container-xl col-sm-6 col-lg-12">
             {{-- ALERT AMBIL DARI COMPONENTS/FORMS/ALERT.BLADE.PHP --}}
             <x-forms.alert />
             

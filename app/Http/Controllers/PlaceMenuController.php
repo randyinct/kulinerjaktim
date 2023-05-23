@@ -159,7 +159,7 @@ class PlaceMenuController extends Controller
      */
     public function destroy(Place $place, Menu $menu)
     {
-        if($menu){
+        if($menu) {
             if($menu->image){
                 if(Storage::exists($menu->image)) {
                     Storage::delete($menu->image);

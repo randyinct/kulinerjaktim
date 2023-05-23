@@ -1,24 +1,26 @@
 <x-templates.default>
-        
+<div class="container">
     <div class="card">
         <div class="card-header">
             <a href="{{ route('place.create') }}" class="btn btn-primary">Tambah data</a>
         </div>
 
         <div class="card-body">
-            <table class="table table-striped" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Kecamatan</th>
-                        <th>Deskripsi</th>
-                        <th>Alamat</th>
-                        <th>Telepon</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-striped" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Kecamatan</th>
+                            <th>Deskripsi</th>
+                            <th>Alamat</th>
+                            <th>Telepon</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -41,6 +43,8 @@
                     </div>
                 </div>
     
+</div>
+    
 
     @push('extra-style')
 
@@ -55,6 +59,7 @@
     <script>
         $(function(){
             $('#dataTable').DataTable({
+                searching: false,
                 processing: true,
                 serverSide: true,
                 ajax: '{!! route('place.index') !!}',
@@ -101,5 +106,9 @@
     })
     </script>
     @endpush
+
+    <x-slot name="title">
+        Data Tempat Kuliner
+    </x-slot>
 
 </x-templates.default>

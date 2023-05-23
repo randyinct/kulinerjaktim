@@ -3,7 +3,9 @@
 use App\Models\SubDistrict;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlaceMenuController;
 use App\Http\Controllers\SubDistrictController;
 
@@ -20,15 +22,15 @@ use App\Http\Controllers\SubDistrictController;
 Route::redirect('/', 'login');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', function () {
-    return view('welcome');
-    })->name('home');
+    Route::get('/home', DashboardController::class, 'index')->name('home');
     
-    Route::get('/sub-district', SubDistrictController::class)->name('subdistrict.index');
+    Route::resource('/sub-district', SubDistrictController::class);
 
     Route::resource('/category', CategoryController::class);
     
     Route::resource('/place', PlaceController::class);
+
+    Route::resource('/user/review', ReviewController::class);
 
     Route::resource('/place/{place}/menu', PlaceMenuController::class)->scoped();
 });

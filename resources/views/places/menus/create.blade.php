@@ -69,9 +69,8 @@
                         </span>
                         @enderror
                     </div>
-                    
-
                 </div>
+                
                 <div class="card-footer">
                     <input type="submit" value="Simpan" class="btn btn-primary float-end">
                 </div>              

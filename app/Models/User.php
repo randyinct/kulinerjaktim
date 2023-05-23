@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Place;
+use App\Models\Review;
 
 
 class User extends Authenticatable
@@ -48,5 +49,10 @@ class User extends Authenticatable
     public function places()
     {
         return $this->belongsToMany(PLace::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }
